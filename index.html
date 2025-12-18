@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarthak AI | Premium Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text-main: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.3));
+        }
+
+        .chat-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-width: 850px;
+            height: 650px;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            padding: 14px 22px;
+            border-radius: 20px;
+            max-width: 80%;
+            font-size: 1rem;
+            animation: slideIn 0.3s ease-out;
+            line-height: 1.5;
+        }
+
+        .user-message { 
+            align-self: flex-end; 
+            background: linear-gradient(135deg, #6366f1, #4f46e5); 
+            color: white; 
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message { 
+            align-self: flex-start; 
+            background: rgba(255,255,255,0.08); 
+            border: 1px solid rgba(255,255,255,0.1);
+            border-bottom-left-radius: 4px;
+        }
+
+        .input-area {
+            padding: 25px;
+            display: flex;
+            gap: 12px;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        input {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 16px 20px;
+            border-radius: 15px;
+            color: white;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        button:hover { background: #4f46e5; transform: scale(1.05); }
+
+        @keyframes slideIn { 
+            from { opacity: 0; transform: translateY(20px) scale(0.95); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>Sarthak AI</h1>
+        <p style="color: #94a3b8; font-size: 1.2rem; letter-spacing: 1px;">THE ULTIMATE INTELLIGENCE EXPERIENCE</p>
+    </section>
+
+    <section class="chat-container" id="chat">
+        <div class="chat-box">
+            <div class="messages-area" id="msgArea">
+                <div class="message ai-message">Namaste! Main Sarthak AI hoon. Puchiye kya puchna hai?</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="1 plus 1 kitna hota hai?" onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let counter = 0;
+
+        // Word to Number mapping for basic support
+        const wordMap = {
+            'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5',
+            'six': '6', 'seven': '7', 'eight': '8', 'nine': '9', 'zero': '0'
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const msgArea = document.getElementById('msgArea');
+            let text = input.value.trim();
+            
+            if (!text) return;
+
+            // Display User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.innerText = text;
+            msgArea.appendChild(userDiv);
+            input.value = "";
+
+            setTimeout(() => {
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'message ai-message';
+                
+                // --- SMART LOGIC ---
+                
+                // 1. Convert words to digits for calculation (e.g., "one" -> "1")
+                let processedText = text.toLowerCase();
+                for (let word in wordMap) {
+                    processedText = processedText.replace(new RegExp(word, 'g'), wordMap[word]);
+                }
+
+                // 2. Extract numbers using Regex
+                const numbers = processedText.match(/\d+/g);
+
+                // 3. Check if user is asking to add (plus, +, jod, sum, etc.)
+                const isAddition = /plus|\+|jod|sum|add|kitna/.test(processedText);
+
+                if (numbers && numbers.length >= 2 && isAddition) {
+                    // Chipka do (Concatenate)
+                    aiDiv.innerText = `${numbers[0]}+${numbers[1]}=${numbers[0]}${numbers[1]}`;
+                } else {
+                    // 4. 3-3 Gap logic
+                    let cycleIndex = counter % 6;
+                    if (cycleIndex < 3) {
+                        aiDiv.innerText = "Sunai nahi de raha hai bhai";
+                    } else {
+                        aiDiv.innerText = "I am asking to you";
+                    }
+                    counter++;
+                }
+
+                msgArea.appendChild(aiDiv);
+                msgArea.scrollTop = msgArea.scrollHeight;
+            }, 700);
+        }
+    </script>
+</body>
+</html> 
