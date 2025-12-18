@@ -142,11 +142,24 @@
                 aiDiv.className = 'message ai-message';
                 let lowText = text.toLowerCase();
 
+                // --- NEW LOGIC START ---
+
+                // Logic for Ansh/Mesopotamia
+                if (lowText.includes('ansh') || lowText.includes('kaha se aya')) {
+                    aiDiv.innerText = "Misopotamia 🏛️🌍📜";
+                }
+                // Logic for Daat/Badi Chij
+                else if (lowText.includes('daat') || lowText.includes('badi chij') || lowText.includes('bahar nikla') || lowText.includes('aage hai')) {
+                    aiDiv.innerText = "Ansh bhai ka daat 🦷✨🔥";
+                }
+
+                // --- NEW LOGIC END ---
+
                 // 1. Jump/Kuda Logic
-                if (lowText.includes('kuda') || lowText.includes('jump') || lowText.includes('sarthak kaha')) {
+                else if (lowText.includes('kuda') || lowText.includes('jump') || lowText.includes('sarthak kaha')) {
                     aiDiv.innerText = "Sarthak jump on a theka counter! 🍻🕺";
                 }
-                // 2. Elastic Logic (Spelling check with regex for 'elastic' variations)
+                // 2. Elastic Logic
                 else if (/el[a|e]st[i|y]k|elastic|lastic/.test(lowText)) {
                     aiDiv.innerText = "This is plastic, Sarthak ke chaddhi mei hai elastic fantastic! 🩲🔥";
                 }
@@ -154,7 +167,7 @@
                 else if (lowText.includes('image') || lowText.includes('photo') || lowText.includes('pic') || lowText.includes('dikhai')) {
                     aiDiv.innerText = "Imageeeeee 🖼️✨📸";
                 }
-                // 4. Math Logic (1+1=11)
+                // 4. Math Logic
                 else if (lowText.match(/\d+/) && (lowText.includes('+') || lowText.includes('plus') || lowText.includes('kitna') || lowText.includes('jod'))) {
                     let processed = lowText;
                     for (let word in wordMap) { processed = processed.replace(new RegExp(word, 'g'), wordMap[word]); }
@@ -165,7 +178,7 @@
                         handleCycle(aiDiv);
                     }
                 } 
-                // 5. Default Cycle Logic (3-3 Gap)
+                // 5. Default Cycle Logic
                 else {
                     handleCycle(aiDiv);
                 }
@@ -183,4 +196,3 @@
     </script>
 </body>
 </html>
-
