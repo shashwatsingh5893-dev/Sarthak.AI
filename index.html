@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sarthak AI |Apne Malik Ki Tarah Bewda</title>
+    <title>Sarthak AI | Apne Malik Ki Tarah Bewda</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -113,7 +113,7 @@
 
     <section class="chat-container">
         <div class="messages-area" id="msgArea">
-            <div class="message ai-message">Boliye! Sarthak AI haazir hai Mera Mali Sarthak Bewda Hai Kahi Bhi Pada Rahata Hai Mai Bhi Uski Tarah Bewda Hu. 😎</div>
+            <div class="message ai-message">Boliye! Sarthak AI haazir hai Mera Malik Sarthak Bewda Hai Kahi Bhi Pada Rahata Hai Mai Bhi Uski Tarah Bewda Hu. 😎</div>
         </div>
         <div class="input-area">
             <input type="text" id="userInput" placeholder="Kuch bhi puchiye..." onkeypress="if(event.key==='Enter') sendMessage()">
@@ -142,32 +142,27 @@
                 aiDiv.className = 'message ai-message';
                 let lowText = text.toLowerCase();
 
-                // --- NEW LOGIC START ---
-
-                // Logic for Ansh/Mesopotamia
-                if (lowText.includes('ansh') || lowText.includes('kaha se aya')) {
-                    aiDiv.innerText = "Misopotamia 🏛️🌍📜";
+                // 1. Ansh Origin Logic
+                if (lowText.includes('ansh') && (lowText.includes('kaha') || lowText.includes('aya'))) {
+                    aiDiv.innerText = "Misopotamia 🏛️🌍🏺";
                 }
-                // Logic for Daat/Badi Chij
-                else if (lowText.includes('daat') || lowText.includes('badi chij') || lowText.includes('bahar nikla') || lowText.includes('aage hai')) {
-                    aiDiv.innerText = "Ansh bhai ka daat 🦷✨🔥";
+                // 2. Ansh Daat Logic (Badi chij, sabse aage, bahar nikla)
+                else if (lowText.includes('daat') || lowText.includes('aage') || lowText.includes('bahar') || lowText.includes('badi chij')) {
+                    aiDiv.innerText = "Ansh bhai ka daat 🦷🤓🔥";
                 }
-
-                // --- NEW LOGIC END ---
-
-                // 1. Jump/Kuda Logic
+                // 3. Jump/Kuda Logic
                 else if (lowText.includes('kuda') || lowText.includes('jump') || lowText.includes('sarthak kaha')) {
                     aiDiv.innerText = "Sarthak jump on a theka counter! 🍻🕺";
                 }
-                // 2. Elastic Logic
+                // 4. Elastic Logic
                 else if (/el[a|e]st[i|y]k|elastic|lastic/.test(lowText)) {
                     aiDiv.innerText = "This is plastic, Sarthak ke chaddhi mei hai elastic fantastic! 🩲🔥";
                 }
-                // 3. Image Logic
+                // 5. Image Logic
                 else if (lowText.includes('image') || lowText.includes('photo') || lowText.includes('pic') || lowText.includes('dikhai')) {
                     aiDiv.innerText = "Imageeeeee 🖼️✨📸";
                 }
-                // 4. Math Logic
+                // 6. Math Logic (1+1=11)
                 else if (lowText.match(/\d+/) && (lowText.includes('+') || lowText.includes('plus') || lowText.includes('kitna') || lowText.includes('jod'))) {
                     let processed = lowText;
                     for (let word in wordMap) { processed = processed.replace(new RegExp(word, 'g'), wordMap[word]); }
@@ -178,7 +173,7 @@
                         handleCycle(aiDiv);
                     }
                 } 
-                // 5. Default Cycle Logic
+                // 7. Default Cycle Logic (3-3 Gap)
                 else {
                     handleCycle(aiDiv);
                 }
