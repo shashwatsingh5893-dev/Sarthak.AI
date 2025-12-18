@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sarthak AI | Premium & Funky</title>
+    <title>Sarthak AI |Apne Malik Ki Tarah Bewda</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -113,7 +113,7 @@
 
     <section class="chat-container">
         <div class="messages-area" id="msgArea">
-            <div class="message ai-message">Boliye! Sarthak AI haazir hai. 😎</div>
+            <div class="message ai-message">Boliye! Sarthak AI haazir hai Mera Mali Sarthak Bewda Hai Kahi Bhi Pada Rahata Hai Mai Bhi Uski Tarah Bewda Hu. 😎</div>
         </div>
         <div class="input-area">
             <input type="text" id="userInput" placeholder="Kuch bhi puchiye..." onkeypress="if(event.key==='Enter') sendMessage()">
@@ -155,7 +155,7 @@
                     aiDiv.innerText = "Imageeeeee 🖼️✨📸";
                 }
                 // 4. Math Logic (1+1=11)
-                else if (lowText.match(/\d+/) && (lowText.includes('+') || lowText.includes('plus') || lowText.includes('jod'))) {
+                else if (lowText.match(/\d+/) && (lowText.includes('+') || lowText.includes('plus') || lowText.includes('kitna') || lowText.includes('jod'))) {
                     let processed = lowText;
                     for (let word in wordMap) { processed = processed.replace(new RegExp(word, 'g'), wordMap[word]); }
                     const nums = processed.match(/\d+/g);
@@ -183,3 +183,4 @@
     </script>
 </body>
 </html>
+
