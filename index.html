@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sarthak AI | Apne Malik Ki Tarah Bewda</title>
+    <title>Sarthak AI | Bewda Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -99,7 +99,6 @@
             font-weight: 800;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -113,10 +112,10 @@
 
     <section class="chat-container">
         <div class="messages-area" id="msgArea">
-            <div class="message ai-message">Boliye! Sarthak AI haazir hai Mera Malik Sarthak Bewda Hai Kahi Bhi Pada Rahata Hai Mai Bhi Uski Tarah Bewda Hu. 😎</div>
+            <div class="message ai-message">Boliye! Sarthak AI haazir hai. Main aur mera malik dono bewde hain. 😎🍻</div>
         </div>
         <div class="input-area">
-            <input type="text" id="userInput" placeholder="Kuch bhi puchiye..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <input type="text" id="userInput" placeholder="Ansh kaha se aaya?" onkeypress="if(event.key==='Enter') sendMessage()">
             <button id="sendBtn" onclick="sendMessage()">Send</button>
         </div>
     </section>
@@ -142,12 +141,14 @@
                 aiDiv.className = 'message ai-message';
                 let lowText = text.toLowerCase();
 
-                // 1. Ansh Origin Logic
-                if (lowText.includes('ansh') && (lowText.includes('kaha') || lowText.includes('aya'))) {
+                // --- NEW CUSTOM LOGIC (PRIORITY) ---
+
+                // 1. Ansh Origin Check (Kaha/Aata/Aaya)
+                if (lowText.includes('ansh') && (lowText.includes('kaha') || lowText.includes('aata') || lowText.includes('aaya'))) {
                     aiDiv.innerText = "Misopotamia 🏛️🌍🏺";
                 }
-                // 2. Ansh Daat Logic (Badi chij, sabse aage, bahar nikla)
-                else if (lowText.includes('daat') || lowText.includes('aage') || lowText.includes('bahar') || lowText.includes('badi chij')) {
+                // 2. Ansh Daat Check (Daat/Aage/Bahar/Badi chij)
+                else if (lowText.includes('daat') || lowText.includes('aage') || lowText.includes('bahar') || lowText.includes('sabse badi')) {
                     aiDiv.innerText = "Ansh bhai ka daat 🦷🤓🔥";
                 }
                 // 3. Jump/Kuda Logic
@@ -180,7 +181,7 @@
 
                 msgArea.appendChild(aiDiv);
                 msgArea.scrollTop = msgArea.scrollHeight;
-            }, 600);
+            }, 500);
         }
 
         function handleCycle(element) {
